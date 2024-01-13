@@ -1,22 +1,25 @@
-
-
-public class Solution {
+class Solution {
     public boolean halvesAreAlike(String s) {
-        Set<Character> vowels = new HashSet<>();
-        vowels.add('a'); vowels.add('e'); vowels.add('i'); vowels.add('o'); vowels.add('u');
-        vowels.add('A'); vowels.add('E'); vowels.add('I'); vowels.add('O'); vowels.add('U');
-
-        int vowelsCount = 0;
-        int midIndex = s.length() / 2;
-
-        for (int i = 0; i < midIndex; i++) {
-            char charA = s.charAt(i);
-            char charB = s.charAt(midIndex + i);
-            if (vowels.contains(charA)) vowelsCount++;
-            if (vowels.contains(charB)) vowelsCount--;
+        int count1 = 0, count2 = 0;
+        
+        // Convert the string to lowercase
+        s = s.toLowerCase();
+        
+        // Iterate through the first half of the string and count vowels
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'i' || s.charAt(i) == 'o' || s.charAt(i) == 'u') {
+                count1++;
+            }
         }
-
-        return vowelsCount == 0;
+        
+        // Iterate through the second half of the string and count vowels
+        for (int i = s.length() / 2; i < s.length(); i++) {
+            if (s.charAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'i' || s.charAt(i) == 'o' || s.charAt(i) == 'u') {
+                count2++;
+            }
+        }
+        
+        // Check if count1 is equal to count2
+        return count1 == count2;
     }
 }
-
